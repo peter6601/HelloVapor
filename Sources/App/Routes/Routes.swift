@@ -1,6 +1,5 @@
 import Vapor
 
-
 extension Droplet {
     func setupRoutes() throws {
         
@@ -17,6 +16,14 @@ extension Droplet {
                 throw Abort.badRequest
             }
             return input.emailAddress.address
+        }
+        
+        get("/") { request in
+            return "Hello World!"
+        }
+        
+        get("/view") { req in
+            return try self.view.make("view.html")
         }
         
         get("hello") { req in

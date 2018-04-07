@@ -22,4 +22,12 @@ try config.setup()
 let drop = try Droplet(config)
 try drop.setup()
 
+drop.get("simple") { req in
+    guard let input = req.data["input"]?.string else  {
+        throw Abort.badRequest
+    }
+    return "Raw Input: \(input)"
+    
+}
+
 try drop.run()
